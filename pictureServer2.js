@@ -154,7 +154,7 @@ io.on('connect', function(socket) {
         }
 
 
-      }, 1000)
+      }, 10000)
 
 
     io.emit('newPicture',(imageName+'Gray'+'.jpg')); ///Lastly, the new name is send to the client web browser.
