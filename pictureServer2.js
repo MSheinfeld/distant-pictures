@@ -146,7 +146,7 @@ io.on('connect', function(socket) {
 
           console.log('Image size: ' + result.width + 'x' + result.height);
 
-          fs.writeFile(imageName+'Gray', result.image, function (err) {
+          fs.writeFile('public/'+imageName+'Gray', result.image, function (err) {
             if (err) {
               throw err;
             }
