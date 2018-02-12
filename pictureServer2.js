@@ -138,19 +138,24 @@ io.on('connect', function(socket) {
     //Third, the picture is  taken and saved to the `public/`` folder
     NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
       //Grayscale functionality
-      gmToGrayscale('public/'+imageName+'.jpeg'), function (err, result) {
-        if (err) {
-          throw err;
-        }
-
-        console.log('Image size: ' + result.width + 'x' + result.height);
-
-        fs.writeFile(imageName+'Gray', result.image, function (err) {
+      setTimeout(function(){
+        gmToGrayscale('public/'+imageName+'.jpeg'), function (err, result) {
           if (err) {
             throw err;
           }
-        });
-      }
+
+          console.log('Image size: ' + result.width + 'x' + result.height);
+
+          fs.writeFile(imageName+'Gray', result.image, function (err) {
+            if (err) {
+              throw err;
+            }
+          });
+        }
+
+
+      }, 1000)
+
 
     io.emit('newPicture',(imageName+'Gray'+'.jpg')); ///Lastly, the new name is send to the client web browser.
     /// The browser will take this new name and load the picture from the public folder.
